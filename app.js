@@ -21,7 +21,7 @@ const app = express();
 const debug = require("debug")("auth0-link-accounts-sample");
 
 
-app.use(session({ secret: 'variable Secret', resave: true, saveUninitialized: true }))
+app.use(session({ secret: 'variable Secret', resave: false, saveUninitialized: true, cookie: { secure: true, maxAge: 300000 } }))
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -41,6 +41,10 @@ app.use("/user", auth({
         login: "/login",
         logout: "/logout",
         postLogoutRedirect: process.env.BASE_URL + "/user",
+    },
+    session: { absoluteDuration: 180 },
+    authorizationParams: {
+        // prompt: 'login'
     },
 
 }), requiresAuth(), user);
