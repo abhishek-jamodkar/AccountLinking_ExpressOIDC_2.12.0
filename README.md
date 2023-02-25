@@ -36,4 +36,4 @@ Account Linking Application:
 
 
 ## Notes
-The account linking application in this sample is created to be used in conjunction with the Redirect Action and hence, if the application is accessed directly, it will try to redirect user to Auth0 /continue endpoint without state parameter and result in failure.
+The account linking application in this sample is configured to be used in conjunction with the Redirect Action and hence, if the application is accessed directly, it will try to redirect user to Auth0 /continue endpoint without state parameter and thus result in failure.
