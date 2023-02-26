@@ -7,7 +7,9 @@
 * Usage:
     1. Check if user app_metadata has account_link_check_done set.
     2. If the flag is set, means user account was checked for account linking and no other account was found with same verified email.
-    3. If flag is not set
+    3. If flag is not set, perform account linking check :
+        a. If more than one account is found for same email, redirect user to the account linking app for user to link the account.
+        b. If only one account is found, set the account_link_check_done to true and move to next action.
 */
 
 
