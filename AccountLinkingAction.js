@@ -1,5 +1,6 @@
 exports.onExecutePostLogin = async (event, api) => {
-    if (event.client.client_id !== '{Client ID of Account Linking App}' && (event.user.app_metadata.account_link_required === 'true' || event.stats.logins_count < 2)) {
+    if(!event.user.app_metadata.account_link_check_done){
+    if (event.client.client_id !== '{Client ID of Account Linking App}' && !event.user.app_metadata.account_link_required === 'false') {
         const _ = require('lodash');
         console.log("entering accountLinking");
         const ManagementClient = require('auth0').ManagementClient;
@@ -22,11 +23,16 @@ exports.onExecutePostLogin = async (event, api) => {
 
 
                 }
+                if (data.length === 1) {
+                     api.user.setAppMetadata("account_link_check_done", true);
+                }
             }).catch(err => {
                 console.log(err);
             });
     }
+    }
 };
 exports.onContinuePostLogin = async (event, api) => {
     api.user.setAppMetadata("account_link_required", false);
+    api.user.setAppMetadata("account_link_check_done", true);
 }
