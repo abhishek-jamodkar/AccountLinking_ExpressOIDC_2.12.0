@@ -1,6 +1,6 @@
 exports.onExecutePostLogin = async (event, api) => {
     if(!event.user.app_metadata.account_link_check_done){
-    if (event.client.client_id !== '{Client ID of Account Linking App}' && !event.user.app_metadata.account_link_required === false) {
+    if (event.client.client_id !== '{Client ID of Account Linking App}' && !event.user.app_metadata.account_link_required) {
         const _ = require('lodash');
         console.log("entering accountLinking");
         const ManagementClient = require('auth0').ManagementClient;
