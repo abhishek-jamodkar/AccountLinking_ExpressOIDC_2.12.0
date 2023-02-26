@@ -4,6 +4,12 @@ Requirements :
 2. Store the Client Id and clientSecret in the secrets of Action.
 3. Add login URI for each application if the user should see a "return to application" button on email verified screen.
 4. Deploy and add this action as first Action in Post Login flow.
+
+Usage:
+1. If the email for user logging in is unverified, this action will send an email verification email to the user through management API, 
+and return error to the application as "Email Verification is required".
+2. If user email is verified, the action will be skipped
+
 */
 exports.onExecutePostLogin = async (event, api) => {
 api.access.deny("email verification required, please check your email");
