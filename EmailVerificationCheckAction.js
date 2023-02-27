@@ -1,4 +1,8 @@
 /**
+Important Notice : This sample is for imformation purpose only and should not be used without review in production. This sample is not covered under 
+Auth0 service agreements and code warranty , and should be used at your discretion.
+*/
+/**
 Requirements : 
 1. Add auth0 as dependecy in the Action
 2. Store the Client Id and clientSecret in the secrets of Action.
