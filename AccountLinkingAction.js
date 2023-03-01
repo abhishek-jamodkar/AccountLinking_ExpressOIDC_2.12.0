@@ -31,10 +31,13 @@ exports.onExecutePostLogin = async (event, api) => {
                 if (data.length < 1) {
                     console.log("no data found");
                 }
+                // Below condition will only redirect a user for account linking if more than one accounts with email_verified=true
                 if (data.length > 1) {
+                    let users_verified_email = _.filter(data, 'email_verified');
+                    if(users_verified_email.length > 1 ){
                     console.log("more than one record found for the email, redirecting");
-                      api.redirect.sendUserTo("https://{Account Linking App domain name}/user");
-
+                    api.redirect.sendUserTo("https://ssoportal.cacu.site:3000/user");
+                    }
 
                 }
                 if (data.length === 1) {
